@@ -22,7 +22,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/components/templates/ExerciseList/index.jsx",
+    "src/context/ExerciseContext.js"
   ],
   "exclude": [
     "node_modules"
