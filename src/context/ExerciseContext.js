@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react'
-import FormModal from '../components/templates/FormModal';
 import { api } from '../services/api';
+
+import FormModal from '../components/templates/FormModal';
 
 
 export const ExerciseContext = createContext();
@@ -10,9 +11,16 @@ export function ExerciseContextProvider({ children }) {
   const [name, setName] = useState()
   const [videoUrl, setVideoUrl] = useState()
   const [type, setType] = useState()
+  const [id, setId] = useState(false)
+  const [liked, setLiked] = useState(false)
 
 
   function handleFormModal() {
+    setName('')
+    setVideoUrl('')
+    setType(null)
+    setLiked(false)
+    setId('')
     setOpenFormModal(true);
   }
 
@@ -30,17 +38,22 @@ export function ExerciseContextProvider({ children }) {
 
   function typeHandler(e) {
     setType(e.target.value)
+    console.log(type)
   }
 
   function handleSubmitForm(e) {
     e.preventDefault();
+
     const exercise = {
       name,
       videoUrl,
-      type
+      type,
+      liked,
+      id
     }
 
-    api.post('exercise', exercise)
+    { id ? api.patch(`exercise/${id}`, exercise) : api.post('exercise', exercise) }
+
 
     setOpenFormModal(false)
   }
@@ -52,14 +65,15 @@ export function ExerciseContextProvider({ children }) {
   function handleDelete(id) {
     api.delete(`exercise/${id}`)
   }
-  
-  function handleEdit(name, videoUrl, type) {
+
+  function handleEdit(name, videoUrl, type, exeId) {
     setName(name)
     setVideoUrl(videoUrl)
     setType(type)
+    setId(exeId)
 
     setOpenFormModal(true)
-}
+  }
 
   return (
     <ExerciseContext.Provider

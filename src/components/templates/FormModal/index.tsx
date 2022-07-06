@@ -33,6 +33,7 @@ const FormModal = () => {
                 Tipo
               </label>
               <select className="border border-blue-400 bg-transparent" value={type} onChange={typeHandler}>
+                <option disabled selected>Selecione</option>
                 <option value='Costas'>Costas</option>
                 <option value='Peito'>Peito</option>
                 <option value='Perna'>Perna</option>

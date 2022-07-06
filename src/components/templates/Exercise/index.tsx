@@ -15,7 +15,7 @@ const Exercise = ({ name, videoUrl, liked, id, type }) => {
         </a>
         <div className="flex gap-2 ">
           <button className={`border p-1 border-blue-400 ${liked ? 'bg-blue-400 text-white border-black' : ''}`} onClick={() => handleLiked(id)}>
-            Like
+            {liked? 'Liked' : 'Like'}
           </button>
           <button className="border p-1 border-blue-400" onClick={() => handleEdit(name, videoUrl, type, id)}>
             Editar
