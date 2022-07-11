@@ -7,12 +7,12 @@ export const Homepage = () => {
     <div className="flex flex-col min-h-screen min-w-screen p-1">
       <Header />
       <div className="flex flex-row bg-white justify-around px-44">
-        <ExerciseList filter="Peito" />
-        <ExerciseList filter="Costas" />
-        <ExerciseList filter="Biceps" />
-        <ExerciseList filter="Triceps" />
-        <ExerciseList filter="Ombro" />
-        <ExerciseList filter="Perna" />
+        <ExerciseList type='Peito' />
+        <ExerciseList type='Costas' />
+        <ExerciseList type='Perna' />
+        <ExerciseList type='Ombro' />
+        <ExerciseList type='Biceps' />
+        <ExerciseList type='Triceps' />
       </div>
       <AddExerciseBtn />
     </div>

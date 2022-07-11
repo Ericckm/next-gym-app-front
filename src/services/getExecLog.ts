@@ -5,10 +5,12 @@ type GetOptionTypes = {
   data: any
 };
 
-export const getExerciseLog = async (): Promise<GetOptionTypes> => {
-  try {
-    const response = await api.get(`/exercise/:id/log`);
 
+export const getExerciseLog = async (): Promise<GetOptionTypes> => {
+
+  try {
+    const response = await api.get(`/exercise/:id/logs`);
+  
     const data = response.data;
 
     return {

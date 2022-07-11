@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
-import { getExerciseData } from '../../../services/getExercise'
+import { useContext, useEffect, useState } from 'react'
+import { ExerciseContext } from '../../../context/ExerciseContext'
+import ExerciseListHeader from '../../atoms/ExerciseListHeader'
 import Exercise from '../Exercise'
 
 type ExerciseMapTypes = {
@@ -10,37 +11,17 @@ type ExerciseMapTypes = {
   type: string
 }
 
-type ExerciseApiTypes = {
-  loading: boolean
-  data: []
-  error: boolean
-}
+const ExerciseList = ({type}) => {
 
-const ExerciseList = ({ filter }) => {
-
-  const [exercises, setExercises] = useState<ExerciseApiTypes>({ loading: false, data: [], error: false })
-
-  useEffect(() => {
-    async function getExec() {
-      const response = await getExerciseData()
-      if (response.status === 200) {
-        setExercises({ loading: true, data: response.data, error: false })
-      } else {
-        setExercises({ loading: true, data: [], error: true })
-      }
-    }
-    getExec()
-  }, [])
+  const { exercises } = useContext(ExerciseContext)
 
   return (
     <div>
-      <h1 className='flex justify-center text-lg font-bold mt-2 mb-2 border rounded border-blue-400 hover:bg-blue-200 hover:text-white transition-colors'>
-        {filter}
-      </h1>
+      <ExerciseListHeader type={type}/>
       <div>
         {!exercises.loading && ('Carregando')}
         {exercises.error && exercises.loading && ('Erro na busca da API')}
-        {exercises.loading && exercises.data.filter((i: ExerciseMapTypes) => i.type === filter).map((exercise: ExerciseMapTypes) => {
+        {exercises.loading && exercises.data.filter((i: ExerciseMapTypes) => i.type === type).map((exercise: ExerciseMapTypes) => {
           return <Exercise
             key={exercise._id}
             id={exercise._id}

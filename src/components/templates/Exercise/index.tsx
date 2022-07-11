@@ -6,12 +6,12 @@ const Exercise = ({ name, videoUrl, liked, id, type }) => {
   const { handleLiked, handleDelete, handleEdit } = useContext(ExerciseContext)
   return (
     <div className="flex justify-between max-h-5/6 p-2 ">
-      <div className="flex flex-col p-2 gap-2 border border-blue-400">
+      <div className="flex flex-col p-2 gap-2 border border-blue-400 rounded">
         <h2 className="font-bold">
           {name}
         </h2>
-        <a href={videoUrl} target='_blank'>
-          Video de execução
+        <a href={videoUrl} target='_blank' className="text-blue-800 mx-4">
+          - Video de execução
         </a>
         <div className="flex gap-2 ">
           <button className={`border p-1 border-blue-400 ${liked ? 'bg-blue-400 text-white border-black' : ''}`} onClick={() => handleLiked(id)}>
